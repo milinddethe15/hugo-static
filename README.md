@@ -1,5 +1,6 @@
 <h1 align="center">Hugo-Static</h1>
 <br/>
+
 _Hugo-Static is a static website built with Hugo, designed for posting blogs. It features a robust search capability powered by Lunr.js, allowing users to efficiently search through blog content._
 
 ## Technologies used
