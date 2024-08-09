@@ -1,6 +1,5 @@
 <h1 align="center">Hugo-Static</h1>
 <br/>
-
 _Hugo-Static is a static website built with Hugo, designed for posting blogs. It features a robust search capability powered by Lunr.js, allowing users to efficiently search through blog content._
 
 ## Technologies used
@@ -14,7 +13,7 @@ First, clone the repo:
 
 Run locally:
 
-``` hugo server```
+```hugo server```
 
 ## New Blog Post
 To create new blog post, in root of the project run:
