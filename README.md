@@ -27,8 +27,10 @@ To create new blog post, in root of the project run:
 
 It is one of the basic theme for hugo. Thanks @LukeSmithxyz for this theme and [amazing video on Hugo](https://youtu.be/ZFL09qhKi5I?si=LKpDetCY4oZTNPTr).
 
-<!-- ## Screenshot
-<p align="center"> <img src="./screenshots/signup.png"/>SignUp Page</p>
-<p align="center"> <img src="./screenshots/login.png"/>Login Page</p>
-<p align="center"> <img src="./screenshots/home.png"/>Home Page</p>
-<p align="center"> <img src="./screenshots/chat.png"/>Chat Page</p> -->
+## Demo
+
+<video src="https://github.com/user-attachments/assets/a10ba741-5a2b-4490-b4e6-e223ab76a573"></video>
+
+
+
+
