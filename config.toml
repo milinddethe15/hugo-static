@@ -1,0 +1,7 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Hugo-Static'
+theme = 'lugo'
+
+[outputs]
+home = ["HTML", "JSON"]

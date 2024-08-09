@@ -1,0 +1,108 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: #240112;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    flex: 1;
+}
+
+img {
+    max-width: 100%;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+footer {
+    text-align: center;
+    clear: both;
+    padding: 1rem; /* Adjust as needed */
+}
+
+/* For TAGLIST.HTML */
+.taglist {
+    text-align: center;
+    clear: both;
+}
+
+/* For NEXTPREV.HTML */
+#nextprev {
+    /* The container for both the previous and next articles. */
+}
+
+#prevart {
+    float: left;
+    text-align: left;
+}
+
+#nextart {
+    float: right;
+    text-align: right;
+}
+
+#nextart, #prevart {
+    max-width: 33%;
+}
+
+/* Search Box Styling */
+#searchbox {
+    margin: 20px 0;
+}
+
+#searchbox input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Search Results Styling */
+#hits {
+    margin: 20px 0;
+}
+
+#hits div {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#hits h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+#hits a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+#hits p {
+    margin: 5px 0 0;
+    color: #bbb;
+}
+
+/* Improve accessibility for search results */
+#hits div:hover {
+    background-color: #2e2e2e;
+}
+
+mark {
+    background-color: #ff0;
+    color: #000;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+    <title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}Hugo-Static</title>
+    <script src="https://cdn.jsdelivr.net/npm/lunr/lunr.min.js"></script>
+    <link rel="canonical" href="{{ .Site.BaseURL }}">
+    <link rel='alternate' type='application/rss+xml' title="{{ .Site.Title }} RSS" href='/index.xml'>
+    <link rel='stylesheet' type='text/css' href='/style.css'>
+    {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">{{ end -}}
+    <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}">
+    {{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta charset="utf-8">
+</head>
+<body>
+{{ if .Site.Menus.main }}{{ partial "nav.html" . }}{{ end -}}
+<main>
+{{ if .IsHome }}
+<header>
+    <h1>Hugo-Static</h1>
+    <div id="searchbox">
+        <input type="text" placeholder="Search..." />
+    </div>
+    <div id="hits"></div>
+</header>
+{{ end }}
+<article>
+{{ block "main" . }}
+{{ .Content }}
+{{ end }}
+{{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}
+{{ if .Param "taglist" }}{{ partial "taglist.html" . }}{{ end -}}
+</article>
+</main>
+{{ block "footer" . }}
+<footer>
+    <a href="{{ .Site.BaseURL }}">Home</a>
+    &#183; <a href="https://www.github.com/milinddethe15/hugo-static">GitHub</a>
+    &#183; <a href="https://www.github.com/milinddethe15">Made by milinddethe15</a>
+</footer>
+{{ end }}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Only run the search script if on the homepage
+    if (document.querySelector('#searchbox')) {
+      // Load the index
+      fetch('/index.json')
+        .then(response => response.json())
+        .then(data => {
+          // Initialize Lunr.js
+          const index = lunr(function () {
+            this.field('title');
+            this.field('content');
+            this.ref('id');
+      
+            data.forEach(function (doc) {
+              this.add(doc);
+            }, this);
+          });
+      
+          // Search function
+          function search(query) {
+            if (!query) return;
+
+            const results = index.search(query);
+            const resultContainer = document.getElementById('hits');
+            resultContainer.innerHTML = '';
+      
+            results.forEach(result => {
+              const item = data.find(d => d.id === result.ref);
+              const resultElement = document.createElement('div');
+              
+              // Highlighting function
+              function highlight(text, query) {
+                if (!query) return text;
+                const pattern = new RegExp(`(${query})`, 'gi');
+                return text.replace(pattern, '<mark>$1</mark>');
+              }
+
+              // Generate highlighted content
+              const highlightedContent = highlight(item.content, query);
+              const snippet = highlightedContent.substring(0, 150);
+
+              resultElement.innerHTML = `
+                <a href="${item.id}">
+                  <h2>${item.title}</h2>
+                  <p>${snippet}...</p>
+                </a>
+              `;
+              resultContainer.appendChild(resultElement);
+            });
+          }
+      
+          // Handle search input
+          const searchBox = document.getElementById('searchbox').querySelector('input');
+          searchBox.addEventListener('input', function() {
+            search(searchBox.value);
+          });
+        })
+        .catch(error => console.error('Error loading index:', error));
+    }
+  });
+</script>
+</body>
+</html>
